@@ -1,15 +1,31 @@
-
+// آدرس ویدیوی پایانی
 const videoURL =
-"https://www.imagenetz.de/files/4b1d5ea553aa84972b6950f00903e275.mp4";
+    "https://www.imagenetz.de/files/4b1d5ea553aa84972b6950f00903e275.mp4";
+
+const home = document.getElementById("home");
+const matrixPage = document.getElementById("matrixPage");
+const jokePage = document.getElementById("jokePage");
+
+const button = document.querySelector(".edit-button");
+
+let matrixAnimation = null;
+let matrixRunning = false;
+let prankStarted = false;
+
 
 // شروع شوخی
 function startPrank() {
+
+    if (prankStarted) return;
+
+    prankStarted = true;
+    button.disabled = true;
 
     showPage("matrixPage");
 
     startMatrix();
 
-    // نمایش صفحه هک به مدت ۵ ثانیه
+    // نمایش ماتریکس به مدت ۵ ثانیه
     setTimeout(() => {
 
         stopMatrix();
@@ -38,23 +54,34 @@ function showPage(pageID) {
 }
 
 
-// ماتریکس
-let matrixAnimation;
-let matrixRunning = false;
+// تنظیمات ماتریکس
+const canvas = document.getElementById("matrix");
+const ctx = canvas.getContext("2d");
 
-function startMatrix() {
+const symbols = "01ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+const fontSize = 18;
 
-    const canvas = document.getElementById("matrix");
-    const ctx = canvas.getContext("2d");
+let drops = [];
+
+
+// تنظیم اندازه صفحه
+function resizeMatrix() {
 
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
 
-    const symbols = "01ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-    const fontSize = 18;
-
     const columns = Math.floor(canvas.width / fontSize);
-    const drops = Array(columns).fill(1);
+
+    drops = Array(columns).fill(1);
+}
+
+
+// شروع ماتریکس
+function startMatrix() {
+
+    if (matrixRunning) return;
+
+    resizeMatrix();
 
     matrixRunning = true;
 
@@ -101,7 +128,10 @@ function stopMatrix() {
 
     matrixRunning = false;
 
-    cancelAnimationFrame(matrixAnimation);
+    if (matrixAnimation !== null) {
+        cancelAnimationFrame(matrixAnimation);
+        matrixAnimation = null;
+    }
 }
 
 
@@ -109,7 +139,7 @@ function stopMatrix() {
 window.addEventListener("resize", () => {
 
     if (matrixRunning) {
-        startMatrix();
+        resizeMatrix();
     }
 
 });
