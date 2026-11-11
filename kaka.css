@@ -1,0 +1,246 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;700;900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: #050505;
+    color: white;
+    font-family: 'Vazirmatn', sans-serif;
+    overflow: hidden;
+}
+
+/* صفحات */
+
+.page {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+    animation: pageEnter 0.7s ease;
+}
+
+.hidden {
+    display: none !important;
+}
+
+@keyframes pageEnter {
+    from {
+        opacity: 0;
+        transform: scale(1.08);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* صفحه اصلی */
+
+#home {
+    background:
+        radial-gradient(circle at center, #400000 0%, #150000 35%, #050505 80%);
+}
+
+.main-title {
+    font-size: clamp(60px, 12vw, 120px);
+    font-weight: 900;
+    color: #ff1717;
+    text-shadow:
+        0 0 10px red,
+        0 0 30px red,
+        0 0 70px #ff0000;
+    animation: titleGlow 1.5s infinite alternate;
+}
+
+@keyframes titleGlow {
+    from {
+        transform: scale(1);
+        filter: brightness(0.8);
+    }
+    to {
+        transform: scale(1.08);
+        filter: brightness(1.5);
+    }
+}
+
+.subtitle {
+    font-size: clamp(18px, 4vw, 28px);
+    color: #ffffff;
+    margin-top: 15px;
+    text-shadow: 0 0 15px red;
+}
+
+/* دکمه */
+
+.edit-button {
+    margin-top: 45px;
+    padding: 20px 60px;
+    font-family: inherit;
+    font-size: 24px;
+    font-weight: 900;
+    color: white;
+    background: linear-gradient(135deg, #ff0000, #790000);
+    border: 2px solid #ff3333;
+    border-radius: 14px;
+    cursor: pointer;
+    box-shadow:
+        0 0 15px red,
+        0 0 40px #a00000;
+    transition: 0.3s;
+    animation: buttonPulse 2s infinite;
+}
+
+.edit-button:hover {
+    transform: scale(1.12);
+    box-shadow:
+        0 0 30px red,
+        0 0 80px red;
+}
+
+@keyframes buttonPulse {
+    50% {
+        box-shadow: 0 0 35px red;
+    }
+}
+
+/* صفحه ماتریکس */
+
+#matrixPage {
+    background: black;
+}
+
+#matrix {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.matrix-content {
+    position: relative;
+    z-index: 5;
+}
+
+.hacked {
+    font-size: clamp(50px, 12vw, 100px);
+    color: #00ff41;
+    font-weight: 900;
+    text-shadow:
+        0 0 10px #00ff41,
+        0 0 30px #00ff41,
+        0 0 70px green;
+    animation: glitch 0.15s infinite alternate;
+}
+
+@keyframes glitch {
+    0% {
+        transform: translateX(-3px);
+    }
+    100% {
+        transform: translateX(3px);
+    }
+}
+
+.evil {
+    font-size: 100px;
+    margin: 25px;
+    animation: evilMove 0.5s infinite alternate;
+}
+
+@keyframes evilMove {
+    to {
+        transform: rotate(10deg) scale(1.2);
+    }
+}
+
+.matrix-content h2 {
+    color: #00ff41;
+    font-size: 20px;
+    text-shadow: 0 0 15px green;
+}
+
+/* صفحه شوخی */
+
+#jokePage {
+    background:
+        radial-gradient(circle, #510000, #150000, #030303);
+}
+
+.joke-title {
+    font-size: clamp(45px, 10vw, 90px);
+    color: #ff2222;
+    font-weight: 900;
+    text-shadow:
+        0 0 15px red,
+        0 0 40px red;
+    animation: jokeAnimation 1s infinite alternate;
+}
+
+@keyframes jokeAnimation {
+    to {
+        transform: scale(1.1);
+    }
+}
+
+.laugh {
+    font-size: 110px;
+    margin: 25px;
+    animation: laughMove 0.5s infinite alternate;
+}
+
+@keyframes laughMove {
+    to {
+        transform: rotate(-10deg) scale(1.15);
+    }
+}
+
+#jokePage h2 {
+    font-size: 22px;
+    color: white;
+    text-shadow: 0 0 15px red;
+}
+
+/* موبایل */
+
+@media (max-width: 600px) {
+
+    .edit-button {
+        padding: 17px 35px;
+        font-size: 20px;
+    }
+
+    .evil,
+    .laugh {
+        font-size: 75px;
+    }
+
+}
+
+
+
+.download-text {
+    margin-top: 25px;
+    font-size: 22px;
+    font-weight: 900;
+    color: #ff3030;
+    text-shadow: 0 0 15px red;
+    animation: downloadPulse 1s infinite alternate;
+}
+
+@keyframes downloadPulse {
+    from {
+        opacity: 0.5;
+    }
+    to {
+        opacity: 1;
+    }
+}
